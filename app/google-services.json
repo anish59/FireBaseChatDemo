@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "562770289978",
+    "firebase_url": "https://fir-chatdemo-fc134.firebaseio.com",
+    "project_id": "fir-chatdemo-fc134",
+    "storage_bucket": "fir-chatdemo-fc134.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562770289978:android:bbbebd0f394f9f90",
+        "android_client_info": {
+          "package_name": "com.firebasechatdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562770289978-c1n3gdlu41sip4lafr6ggugt6ijbknd8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYD5B44L0CQzcZqesXa7FGxoEbvlVgDEU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
