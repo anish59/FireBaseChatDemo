@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.firebasechatdemo.helper.AppConstants;
 import com.firebasechatdemo.helper.FBaseConstants;
 import com.firebasechatdemo.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -73,12 +72,14 @@ public class RegisterActivity extends AppCompatActivity {
                     FirebaseUser firebaseUser = auth.getCurrentUser();
                     String userId = firebaseUser.getUid();
 
-                    reference = FirebaseDatabase.getInstance().getReference(FBaseConstants.USER).child(userId);
+                    reference = FirebaseDatabase.getInstance().getReference(FBaseConstants.USERS).child(userId);
 
                     HashMap<String, String> hashMap = new HashMap<>();
                     hashMap.put(FBaseConstants.ID, userId);
                     hashMap.put(FBaseConstants.USER_NAME, userName);
-                    hashMap.put(FBaseConstants.IMAGE_URL, AppConstants.IMG_DEFAULT_NAME);
+
+//                    hashMap.put(FBaseConstants.IMAGE_URL, AppConstants.IMG_DEFAULT_NAME);
+                    hashMap.put(FBaseConstants.IMAGE_URL, "http://profilepicturesdp.com/wp-content/uploads/2018/06/best-profile-avatar-pictures-1.png");
 
                     reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

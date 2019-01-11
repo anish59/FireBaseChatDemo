@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ChatActivity">
+
+    <include
+        android:id="@+id/bar"
+        layout="@layout/app_bar" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvConversations"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layoutMessageCompose"
+        android:layout_below="@+id/bar"
+        android:layout_margin="4dp" />
+
+    <RelativeLayout
+        android:id="@+id/layoutMessageCompose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/imgAttach"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_attach" />
+
+        <ImageView
+            android:id="@+id/imgCam"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_toEndOf="@+id/imgAttach"
+            android:layout_toRightOf="@+id/imgAttach"
+            android:padding="8dp"
+            android:src="@drawable/ic_camera" />
+
+
+        <EditText
+            android:id="@+id/edtWriteMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/imgSend"
+            android:layout_toLeftOf="@+id/imgSend"
+            android:layout_toEndOf="@+id/imgCam"
+            android:layout_toRightOf="@+id/imgCam"
+            android:background="@drawable/text_edit_text_bg"
+            android:hint="Type your message here"
+            android:maxLines="3"
+            android:padding="8dp"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/imgSend"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_send" />
+
+    </RelativeLayout>
+</RelativeLayout>

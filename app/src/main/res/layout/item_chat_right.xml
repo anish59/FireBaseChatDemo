@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/layout2"
+            android:layout_toLeftOf="@+id/layout2"
+            android:background="@drawable/layout_round_bg_2"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/txtReceiverMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dummy_small_text"
+                android:textColor="@color/white"
+                android:visibility="visible" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/imgReceiverMsg"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:text="@string/dummy_small_text"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:orientation="vertical">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/imgReceiver"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                app:placeholderImage="@drawable/ic_profile_default"
+                app:roundAsCircle="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:maxLength="5"
+                android:text="02:33"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginEnd="50dp"
+    android:layout_marginRight="50dp"
+    android:orientation="horizontal"
+    android:padding="4dp">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:orientation="vertical">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/imgReceiver"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            app:placeholderImage="@drawable/ic_profile_default"
+            app:roundAsCircle="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:maxLength="5"
+            android:textColor="@color/black"
+            android:textSize="10sp"
+            android:text="02:33" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_round_bg"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/txtReceiverMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dummy_small_text"
+            android:visibility="visible" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/imgReceiverMsg"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:text="@string/dummy_small_text"
+            android:visibility="gone" />
+    </LinearLayout>
+
+
+</LinearLayout>
