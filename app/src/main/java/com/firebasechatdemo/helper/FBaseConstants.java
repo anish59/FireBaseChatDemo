@@ -7,5 +7,14 @@ public class FBaseConstants {
     public static final String USER_NAME = "UserName";
     public static final String IMAGE_URL = "ImageUrl";
 
+    //Chat table
+    public static final String CHATS = "Chats";
+    public static final String MESSAGE = "Message";
+    public static final String SENDER_ID = "SenderId";
+    public static final String RECEIVER_ID = "ReceiverId";
+    public static final String UTC_TIME = "UtcTime";
+    public static final String MediaType = "MediaType";
+    public static final String Media = "Media";
+
 
 }

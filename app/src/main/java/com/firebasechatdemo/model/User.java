@@ -1,6 +1,8 @@
 package com.firebasechatdemo.model;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     private String Id;
     private String UserName;
     private String ImageUrl;
@@ -36,5 +38,14 @@ public class User {
 
     public void setImageUrl(String imageUrl) {
         ImageUrl = imageUrl;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "Id='" + Id + '\'' +
+                ", UserName='" + UserName + '\'' +
+                ", ImageUrl='" + ImageUrl + '\'' +
+                '}';
     }
 }

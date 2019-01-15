@@ -1,5 +1,6 @@
 package com.firebasechatdemo.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,7 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.firebasechatdemo.R;
+import com.firebasechatdemo.activities.ChatActivity;
 import com.firebasechatdemo.adapters.UsersAdapter;
+import com.firebasechatdemo.helper.AppConstants;
 import com.firebasechatdemo.helper.FBaseConstants;
 import com.firebasechatdemo.model.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,7 +51,7 @@ public class UsersFragment extends Fragment {
         this.rvUsers = (RecyclerView) view.findViewById(R.id.rvUsers);
         userList = new ArrayList<>();
 
-        usersAdapter = new UsersAdapter(getContext());
+        usersAdapter = new UsersAdapter(getContext(), userClickedListener);
         rvUsers.setLayoutManager(new LinearLayoutManager(getContext()));
         rvUsers.setAdapter(usersAdapter);
 
@@ -80,4 +83,13 @@ public class UsersFragment extends Fragment {
             }
         });
     }
+
+    private UsersAdapter.UserClickedListener userClickedListener = new UsersAdapter.UserClickedListener() {
+        @Override
+        public void onUserClicked(User user) {
+            Intent intent = new Intent(getContext(), ChatActivity.class);
+            intent.putExtra(AppConstants.INTENT_USER, user);
+            startActivity(intent);
+        }
+    };
 }

@@ -24,7 +24,7 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/txtReceiverMsg"
+                android:id="@+id/txtMsgRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dummy_small_text"
@@ -32,10 +32,9 @@
                 android:visibility="visible" />
 
             <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/imgReceiverMsg"
+                android:id="@+id/imgMsgRight"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:text="@string/dummy_small_text"
                 android:visibility="gone" />
         </LinearLayout>
 
@@ -51,7 +50,7 @@
             android:orientation="vertical">
 
             <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/imgReceiver"
+                android:id="@+id/imgUserRight"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
@@ -59,6 +58,7 @@
                 app:roundAsCircle="true" />
 
             <TextView
+                android:id="@+id/txtMsgTimeRight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

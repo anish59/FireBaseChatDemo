@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -19,9 +20,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
     private Context context;
     private List<User> users;
+    private UserClickedListener listener;
 
-    public UsersAdapter(Context context) {
+    public UsersAdapter(Context context, UserClickedListener listener) {
         this.context = context;
+        this.listener = listener;
     }
 
     public void setUsers(List<User> users) {
@@ -49,6 +52,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder {
+        private final LinearLayout layoutItemMain;
         TextView txtLastMsg;
         TextView txtName;
         SimpleDraweeView imgUser;
@@ -58,12 +62,24 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
             txtLastMsg = (TextView) itemView.findViewById(R.id.txtLastMsg);
             txtName = (TextView) itemView.findViewById(R.id.txtName);
             imgUser = (SimpleDraweeView) itemView.findViewById(R.id.imgUser);
+            layoutItemMain = (LinearLayout) itemView.findViewById(R.id.layoutItemMain);
         }
 
-        void setData(User user) {
+        void setData(final User user) {
             txtName.setText(user.getUserName());
             imgUser.setImageURI(user.getImageUrl());
 
+            layoutItemMain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onUserClicked(user);
+                }
+            });
+
         }
+    }
+
+    public interface UserClickedListener {
+        void onUserClicked(User user);
     }
 }
