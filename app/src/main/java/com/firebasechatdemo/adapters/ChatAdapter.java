@@ -95,7 +95,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         void setData(Chat data, int viewType) {
             if (viewType == VIEW_TYPE_LEFT) {
 
-                if (data.getMediaType() != 0) {
+                if (data.getMediaType().equals("0")) {
                     imgMsgLeft.setImageURI(data.getMedia());
                 }
 
@@ -105,7 +105,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
             } else {
 
-                if (data.getMediaType() != 0) {
+                if (data.getMediaType().equals("0")) {
                     imgMsgRight.setImageURI(data.getMedia());
                 }
 

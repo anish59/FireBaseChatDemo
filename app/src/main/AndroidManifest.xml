@@ -22,7 +22,9 @@
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.DashBoardActivity" />
-        <activity android:name=".activities.ChatActivity"></activity>
+        <activity
+            android:name=".activities.ChatActivity"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>

@@ -2,7 +2,9 @@ package com.firebasechatdemo.activities;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -10,21 +12,29 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebasechatdemo.R;
+import com.firebasechatdemo.adapters.ChatAdapter;
 import com.firebasechatdemo.helper.AppConstants;
 import com.firebasechatdemo.helper.FBaseConstants;
 import com.firebasechatdemo.helper.Functions;
+import com.firebasechatdemo.model.Chat;
 import com.firebasechatdemo.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -35,11 +45,13 @@ public class ChatActivity extends AppCompatActivity {
     private android.widget.EditText edtWriteMessage;
     private android.widget.ImageView imgSend;
     private android.widget.RelativeLayout layoutMessageCompose;
+    private ChatAdapter chatAdapter;
     private FirebaseUser firebaseUser;
     private User user;
     Toolbar toolbar;
     TextView txtTitle;
-
+    DatabaseReference reference;
+    List<Chat> chatList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +67,48 @@ public class ChatActivity extends AppCompatActivity {
         context = this;
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
+
         initToolbar();
         actionListeners();
 
         getIntentData();
+
+        getUserChat();
+    }
+
+    private void getUserChat() {
+
+        chatAdapter = new ChatAdapter(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setStackFromEnd(true);
+        rvConversations.setLayoutManager(layoutManager);
+        rvConversations.setAdapter(chatAdapter);
+
+        reference = FirebaseDatabase.getInstance().getReference().child(FBaseConstants.CHATS);
+        reference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                chatList = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Chat chat = snapshot.getValue(Chat.class);
+                    if ((chat.getSenderId().equals(firebaseUser.getUid()) && chat.getReceiverId().equals(user.getId()))
+                            || (chat.getSenderId().equals(user.getId()) && chat.getReceiverId().equals(firebaseUser.getUid()))) {
+                        chatList.add(chat);
+                    }
+                }
+
+                chatAdapter.setChatList(chatList);
+                rvConversations.scrollToPosition(chatList.size()-1);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(context, "DataBaseErr: " + databaseError.toString(), Toast.LENGTH_SHORT).show();
+                Log.e("DataBaseErr: ", databaseError.toString());
+            }
+        });
     }
 
     private void getIntentData() {
@@ -79,6 +129,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 sendMessage(edtWriteMessage.getText().toString().trim(), firebaseUser.getUid(), user.getId()
                         , Functions.getCurrentUtctime(Functions.yyyyMMddHHmmss));
+                edtWriteMessage.setText("");
 
 
             }

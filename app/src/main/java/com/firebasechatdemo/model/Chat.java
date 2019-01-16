@@ -5,7 +5,7 @@ public class Chat {
     private String SenderId;
     private String ReceiverId;
     private String UtcTime;
-    private int MediaType;
+    private String MediaType;
     private String Media;
 
     public String getMessage() {
@@ -40,11 +40,11 @@ public class Chat {
         UtcTime = utcTime;
     }
 
-    public int getMediaType() {
+    public String getMediaType() {
         return MediaType;
     }
 
-    public void setMediaType(int mediaType) {
+    public void setMediaType(String mediaType) {
         MediaType = mediaType;
     }
 
